@@ -1,8 +1,16 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Button } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Group,
+  useMantineColorScheme,
+} from "@mantine/core";
+import { AppShell, Navbar, Header } from "@mantine/core";
+import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 const Home: NextPage = () => {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   return (
     <>
       <Head>
@@ -11,7 +19,42 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Button>Hello World</Button>
+        <AppShell
+          padding="md"
+          navbar={
+            <Navbar width={{ base: 300 }} height="100%" p="xs">
+              {/* Navbar content */}
+            </Navbar>
+          }
+          header={
+            <Header height={60} p="xs">
+              <Group sx={{ height: "100%" }} px={20} position="apart">
+                X
+                <ActionIcon
+                  variant="default"
+                  onClick={() => toggleColorScheme()}
+                  size={30}
+                >
+                  {colorScheme === "dark" ? (
+                    <IconSun size="1rem" />
+                  ) : (
+                    <IconMoonStars size="1rem" />
+                  )}
+                </ActionIcon>
+              </Group>
+            </Header>
+          }
+          styles={(theme) => ({
+            main: {
+              backgroundColor:
+                theme.colorScheme === "dark"
+                  ? theme.colors.dark[8]
+                  : theme.colors.gray[0],
+            },
+          })}
+        >
+          {/* Your application here */}
+        </AppShell>
       </main>
     </>
   );
