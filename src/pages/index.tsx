@@ -5,9 +5,13 @@ import {
   Button,
   Group,
   useMantineColorScheme,
+  Box,
+  rem,
 } from "@mantine/core";
 import { AppShell, Navbar, Header } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
+import { MainLinks } from "~/components/shell/_main-links";
+import { User } from "~/components/shell/_user";
 
 const Home: NextPage = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -22,8 +26,13 @@ const Home: NextPage = () => {
         <AppShell
           padding="md"
           navbar={
-            <Navbar width={{ base: 300 }} height="100%" p="xs">
-              {/* Navbar content */}
+            <Navbar height={600} p="xs" width={{ base: 300 }}>
+              <Navbar.Section grow mt="md">
+                <MainLinks />
+              </Navbar.Section>
+              <Navbar.Section>
+                <User />
+              </Navbar.Section>
             </Navbar>
           }
           header={
